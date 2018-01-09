@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .switch {
+            -webkit-appearance: none;
+            width: 50px;
+            border: 1px solid #dfdfdf;
+            border-radius: 30%;
+            height: 32px;
+            position: relative;
+            outline: none;
+            transition: all 0.2s linear;
+        }
+
+        .switch:checked {
+            transition: all 0.2s linear;
+            box-shadow: #eee 0 0 16px 16px inset;
+        }
+
+        .switch:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px 0 #ddd;
+            background: #fff;
+            transition: all .2s linear;
+        }
+
+        .switch:checked:before {
+            left: 20px;
+            transition: all .2s linear;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+
+</div>
+<script>
+    class Switch {
+        constructor() {
+            this.state = {true: false};
+        };
+
+        createDOMFromString(str) {
+            let oDiv = document.createElement('div');
+            oDiv.innerHTML = str;
+            return oDiv.firstElementChild
+        }
+         setState(newState){
+             Object.assign(this.state,newState);
+             let oldEl = this.el;
+             let newEl = this.render();//渲染一个新的元素
+             oldEl.parentNode.replaceChild(newEl, oldEl);
+         }
+        Change() {
+           this.setState({true:!this.state.true})
+        }
+
+        render() {
+            this.el = this.createDOMFromString(`<div>
+          <input type="checkbox" class="switch" ${this.state.true ? 'checked' : ''}>
+           <p class="text">${this.state.true ? 'open' : 'close'}</p>
+    </div>`);
+            this.el.firstElementChild.addEventListener('change', this.Change.bind(this), false);
+            return this.el;
+        }
+    }
+</script>
+<script>
+    let app = document.querySelector('.app');
+    app.appendChild(new Switch().render());
+    app.appendChild(new Switch().render());
+</script>
+</body>
+</html>
