@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.17.1",
-    "bootstrap": "^3.3.7",
-    "jsonp": "^0.2.1",
-    "moment": "^2.20.1",
-    "prop-types": "^15.6.0"
-  }
-}
