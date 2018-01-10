@@ -12,17 +12,17 @@ class Panel extends Component{
             <div className="container">
                 <div className="panel-default panel">
                     <Header head={header}></Header>
-                    <Body b={body}/>
+                    <Body body={body}/>
                 </div>
             </div>
         )
     }
 } // react种需要将属性一层层向下传递 单向数据流
 class Body extends Component{
-    render(){return (<div className="panel-body">{this.props.b}</div>)}
+    render(){return (<div className="panel-body">{this.props.body}</div>)}
 }
 class Header extends Component{
     render(){return (<div className="panel-heading">{this.props.head}</div>)}
 }
-let data = {header:'我非常帅',body:'长的帅'};
+let data = {header:'xxxx',body:'yyyy'};
 ReactDOM.render(<Panel {...data}/>,window.root);
