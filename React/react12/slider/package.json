@@ -1,5 +1,5 @@
 {
-  "name": "DAY2",
+  "name": "slider",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -18,6 +18,11 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.1"
+  },
+  "scripts": {
+    "dev":"webpack-dev-server",
+    "start": "npm run dev",
+    "build":"webpack -p"
   },
   "dependencies": {
     "react": "^16.2.0",

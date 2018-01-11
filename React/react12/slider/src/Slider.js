@@ -1,6 +1,7 @@
 import React from 'react'
 import SliderList from "./SliderList";
 import SliderArrows from "./SliderArrows";
+import SliderDots from "./SliderDots";
 
 export default class Slider extends React.Component {
     constructor() {
@@ -10,11 +11,24 @@ export default class Slider extends React.Component {
 
     go = (step) => {
         let index = this.state.index + step;
-        if (index === this.props.items.length) {
-            index = 0;
+        if (index > this.props.items.length) {
+            this.$ul.style.transitionDuration = '';
+            this.$ul.style.left = 0;
+            setTimeout(() => {
+                this.$ul.style.transitionDuration = this.props.speed + 's';
+                index = 1;
+                this.setState({index})
+            }, 30);
+            return;
         }
         if (index < 0) {
-            index = this.props.items.length - 1;
+            this.$ul.style.transitionDuration = '';
+            this.$ul.style.left = this.props.items.length - 1 * 400 + 'px';
+            setTimeout(() => {
+                this.$ul.style.transitionDuration = this.props.speed + 's';
+                index = this.props.items.length - 1;
+                setState({index})
+            }, 30);
         }
         this.setState({
             index
@@ -30,6 +44,7 @@ export default class Slider extends React.Component {
         if (this.props.autoplay) {
             this.turn();
         }
+        this.$ul = this.refs.list.refs.ul;
     }
 
     render() {
@@ -40,8 +55,9 @@ export default class Slider extends React.Component {
             }} onMouseLeave={() => {
                 this.turn()
             }}>
-               <SliderList index={this.state.index} items={this.props.items} speed={this.state.speed}/>
-                {this.props.arrows?<SliderArrows go={this.go}/>:null}
+                <SliderList ref='list' index={this.state.index} items={this.props.items} speed={this.state.speed}/>
+                {this.props.arrows ? <SliderArrows go={this.go}/> : null}
+                {this.props.dots ? <SliderDots go={this.go} items={this.props.items} index={this.state.index}/> : null}
             </div>
         )
     }
