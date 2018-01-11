@@ -12,7 +12,8 @@ export default class MessageBox extends React.PureComponent {
         let messages = this.state.messages.filter(item => item.id != id);
         this.setState({
             messages: messages
-        })
+        });
+        localStorage.setItem('messages',JSON.stringify(messages))
     };
     addMessage = (message) => {//message 是儿子传递的
         let messageItem = {...message, id: Math.random(), createAt: Date.now()};
@@ -21,10 +22,15 @@ export default class MessageBox extends React.PureComponent {
         this.setState({
             messages
         });
-
+        localStorage.setItem('messages',JSON.stringify(messages));
     };
-
+    /*生命周期是同步的*/
+    componentWillMount(){
+        let messages=JSON.parse(localStorage.getItem('messages')) ||[];
+         this.setState({messages})
+    }
     render() {
+        console.log('render');
         return (
             <div className='container'>
                 <div className='row'>

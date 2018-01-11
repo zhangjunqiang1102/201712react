@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import  React, {Component} from 'react'
 import ReactDOM, {render} from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import oldJSONP from 'jsonp';
@@ -65,6 +65,4 @@ class Search extends Component {
         )
     }
 }
-
-
 ReactDOM.render(<Search/>, window.root);
