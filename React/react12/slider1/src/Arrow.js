@@ -3,7 +3,7 @@ import React from  'react'
 export default class Arrow extends  React.Component{
     render(){
         return <div className='slider-arrows'>
-          <span onClick={()=>{
+            <span onClick={()=>{
                 this.props.go(-1)
             }}>&lt;</span>
             <span onClick={()=>{

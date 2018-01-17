@@ -1,8 +1,8 @@
+/*
 import React from 'react'
-import List from './List'
-import Dots from './Dots'
-import Arrow from './Arrow'
-
+import SliderList from "./SliderList";
+import SliderArrows from "./SliderArrows";
+import SliderDots from "./SliderDots";
 
 export default class Slider extends React.Component {
     constructor() {
@@ -20,12 +20,11 @@ export default class Slider extends React.Component {
                 index = 1;
                 this.setState({index})
             }, 30);
-            return
+            return;
         }
         if (index < 0) {
             this.$ul.style.transitionDuration = '';
-            this.$ul.style.left = this.props.item.length * -400 + 'px';
-
+            this.$ul.style.left = this.props.items.length *- 1 * 400 + 'px';
             setTimeout(() => {
                 this.$ul.style.transitionDuration = this.props.speed + 's';
                 index = this.props.items.length - 1;
@@ -34,9 +33,8 @@ export default class Slider extends React.Component {
         }
         this.setState({
             index
-        });
+        })
     };
-
     turn = () => {
         this.timer = setInterval(() => {
             this.go(1)
@@ -44,27 +42,24 @@ export default class Slider extends React.Component {
     };
 
     componentDidMount() {
-     if(this.props.autoPlay){
-         this.turn()
-     }
-     this.$ul=this.refs.list.refs.ul;
-
-    };
+        if (this.props.autoplay) {
+            this.turn();
+        }
+        this.$ul = this.refs.list.refs.ul;
+    }
 
     render() {
+
         return (
             <div className='slider-container' onMouseEnter={() => {
                 clearInterval(this.timer)
             }} onMouseLeave={() => {
                 this.turn()
             }}>
-                <List ref='list' index={this.state.index} items={this.props.items} speed={this.props.speed}/>
-                {this.props.arrows ? <Arrow go={this.go}/> : null}
-                {this.props.dots ? <Dots go={this.go} items={this.props.items} index={this.state.index}/> : null}
+                <SliderList ref='list' index={this.state.index} items={this.props.items} speed={this.state.speed}/>
+                {this.props.arrows ? <SliderArrows go={this.go}/> : null}
+                {this.props.dots ? <SliderDots go={this.go} items={this.props.items} index={this.state.index}/> : null}
             </div>
         )
-
     }
-
-}
-
+}*/
