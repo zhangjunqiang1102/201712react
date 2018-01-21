@@ -15,3 +15,4 @@ ReactDom.render(<Slider
     items={items}
 />, window.root);
 
+

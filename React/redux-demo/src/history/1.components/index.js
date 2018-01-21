@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom';
-import Username from './components/Username'
-import Password from "./components/Password";
+import Username from './Username'
+import Password from "./Password";
 
 ReactDom.render(<div>
     <Username/>
